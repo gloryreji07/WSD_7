@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Book Catalogue</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        
+        body {
+            background-image: url('/bok.jfif'); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+        .overlay {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: #ffffff;
+            border-radius: 4px;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .pagination-btn {
+            background-color: #6c757d;
+            color: #ffffff;
+            border-radius: 4px;
+            padding: 8px 12px;
+            margin: 0 4px;
+            transition: background-color 0.3s;
+        }
+        .pagination-btn:hover {
+            background-color: #5a6268;
+        }
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #343a40;
+            color: #ffffff;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto p-6 overlay">
+        <h1 class="text-4xl font-extrabold text-center mb-8 text-purple-700">Advanced Book Catalogue</h1>
+
+        <div class="mb-6 flex flex-wrap gap-4 justify-center">
+            <input type="text" id="search" placeholder="Search by title" class="p-3 border rounded w-full sm:w-1/2 focus:outline-none focus:ring-2 focus:ring-purple-500">
+
+            <div class="flex justify-between items-center w-full sm:w-1/2">
+                <label for="sort" class="text-lg font-semibold">Sort by:</label>
+                <select id="sort" class="p-3 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <option value="title">Title</option>
+                    <option value="author">Author</option>
+                    <option value="date">Date</option>
+                    <option value="rating">Rating</option>
+                </select>
+            </div>
+
+            <div class="flex flex-wrap gap-4 mt-4">
+                <label class="w-full sm:w-1/4">
+                    <span class="font-semibold">Genre:</span>
+                    <select id="filter-genre" class="p-3 border rounded w-full focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        <option value="">All Genres</option>
+                        <option value="fiction">Fiction</option>
+                        <option value="non-fiction">Non-Fiction</option>
+                        
+                    </select>
+                </label>
+
+                <label class="w-full sm:w-1/4">
+                    <span class="font-semibold">Author:</span>
+                    <input type="text" id="filter-author" placeholder="Author name" class="p-3 border rounded w-full focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </label>
+
+                <label class="w-full sm:w-1/4">
+                    <span class="font-semibold">Publication Date:</span>
+                    <input type="date" id="filter-date" class="p-3 border rounded w-full focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </label>
+            </div>
+        </div>
+
+        <div id="book-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+        <div id="pagination" class="flex justify-center mt-8 space-x-2"></div>
+
+        <div id="loading" class="hidden text-center mt-4 text-purple-700 font-semibold">Loading...</div>
+        <div id="error" class="hidden text-red-500 text-center mt-4 font-semibold"></div>
+    </div>
+
+    <footer>
+        &copy; 2024 Advanced Book Catalogue by Glory
+
+    <div id="modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden justify-center items-center">
+        <div class="bg-white rounded-lg shadow-lg w-full max-w-lg p-6 relative">
+            <button id="modal-close" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">&times;</button>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
